@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-const SPEED = 100.0
-const JUMP_VELOCITY = -300.0
+var SPEED = 100.0
+var JUMP_VELOCITY = -300.0
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var paperbag: Area2D = $"../paperbag"
@@ -52,11 +52,17 @@ func animationSet(item_name, motion):
 
 
 func _physics_process(delta: float) -> void:
+	if $Inventory.currentItem == "bag":
+		JUMP_VELOCITY = -550
+		SPEED = 200
+	else:
+		JUMP_VELOCITY = -300
+		SPEED = 100
 	enemy_attack()
 	player_attack()
-	if paperbag.pickedUp():
-		animationSet("bag","idle")
-		$Inventory.currentItem = "bag"
+	#if paperbag.pickedUp():
+		#animationSet("bag","idle")
+		#$Inventory.currentItem = "bag"
 	if health <= 0:
 		#$AnimatedSprite2D.play("death")
 		health = 0

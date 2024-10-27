@@ -1,7 +1,7 @@
 extends Node2D
 
 # A dictionary to hold item data
-var items = {"nothing": 1, "jack":1, "bag":1} #define names of items and set which ones are owned by default
+var items = {"nothing": 1, "jack":0, "bag":1} #define names of items and set which ones are owned by default
 var currentItem = "nothing"
 
 # Max size of the inventory
