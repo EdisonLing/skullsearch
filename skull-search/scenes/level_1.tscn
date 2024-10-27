@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvgxf25doroty"]
+
+[ext_resource type="PackedScene" uid="uid://dguok84354ukb" path="res://scenes/player.tscn" id="1_3nnx7"]
+[ext_resource type="PackedScene" uid="uid://dh3tvs1iexd8n" path="res://scenes/eyeball.tscn" id="2_4bi7p"]
+[ext_resource type="PackedScene" uid="uid://cv8y4n14rll8g" path="res://scenes/mushroom.tscn" id="3_p2b3m"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vetsk"]
+distance = 5.0
+
+[node name="Level1" type="Node"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="Player" parent="." instance=ExtResource("1_3nnx7")]
+position = Vector2(2, -5)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1, 6)
+shape = SubResource("WorldBoundaryShape2D_vetsk")
+
+[node name="EYEBALL" parent="." instance=ExtResource("2_4bi7p")]
+position = Vector2(112, -101)
+
+[node name="Mushroom" parent="." instance=ExtResource("3_p2b3m")]
+position = Vector2(-122, -36)
