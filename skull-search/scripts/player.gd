@@ -19,7 +19,38 @@ func _physics_process(delta: float) -> void:
 		#$AnimatedSprite2D.play("death")
 		health = 0
 		player_alive = false
-	player_move(delta)
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+# Handle jump.
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+#Get the input direction 1, 0 -1
+	var direction := Input.get_axis("move_left", "move_right")
+
+#flip the sprite
+	if direction>0:
+		animated_sprite.flip_h = false
+	elif direction <0:
+		animated_sprite.flip_h = true
+
+	if attack_ip:
+		if not animated_sprite.is_playing():
+			attack_ip = false
+	elif is_on_floor():
+		if direction == 0:
+			animated_sprite.play("idle")
+		elif direction:
+			animated_sprite.play("walking")
+	else:
+		animated_sprite.play("jumping")
+	#play animation
+
+	if direction:
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+	move_and_slide()
 	
 	
 func player_move(delta):
@@ -62,7 +93,6 @@ func enemy_attack():
 func player():
 	pass
 
-
 func _on_attack_cd_timeout() -> void:
 	enemy_attack_cooldown = true
 
@@ -77,6 +107,9 @@ func player_attack():
 			$DealAttackCD.start()
 		if dir == -1:
 			animated_sprite.flip_h = true
+			animated_sprite.play("attack")
+			$DealAttackCD.start()
+		if dir == 0:
 			animated_sprite.play("attack")
 			$DealAttackCD.start()
 			

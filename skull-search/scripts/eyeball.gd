@@ -40,9 +40,9 @@ func _on_hitbox_body_exited(body: Node2D) -> void:
 		player_in_range = false
 		
 func damage():
-	if player_in_range and global.player_current_attack == false:
+	if player_in_range and global.player_current_attack == true:
 		health = health - 25
-		print("eye h = ", health)
-		if health < 0:
+		print(health)
+		if health <= 0:
 			$AnimatedSprite2D.play("death")
 			
