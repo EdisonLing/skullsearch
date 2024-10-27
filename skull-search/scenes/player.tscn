@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://8owwmph80mis" path="res://assets/assets/sprites/Bag/Skeleton_01_White_Die.png" id="4_6hxtx"]
 [ext_resource type="Texture2D" uid="uid://bvnpu0fxmvghj" path="res://assets/assets/sprites/Candle_Walk.png" id="4_cs5tp"]
 [ext_resource type="Texture2D" uid="uid://3s3bvjt0rc6i" path="res://assets/assets/sprites/Bag/Skeleton_01_White_Hurt.png" id="5_6pjxe"]
+[ext_resource type="Texture2D" uid="uid://722f5ygfjb4x" path="res://assets/assets/sprites/Bag/Skeleton_01_White_Walk.png" id="5_kjy3p"]
 [ext_resource type="Texture2D" uid="uid://c3lor0clcu8un" path="res://assets/assets/sprites/Jack o lantern/Skeleton_01_White_Attack1.png" id="11_p46kg"]
 [ext_resource type="Texture2D" uid="uid://bv7o5bd8w0tlp" path="res://assets/assets/sprites/Jack o lantern/Skeleton_01_White_Hurt.png" id="12_js2ls"]
 [ext_resource type="Texture2D" uid="uid://csa2vrcu2mdui" path="res://assets/assets/sprites/Jack o lantern/Skeleton_01_White_Idle.png" id="13_35fwa"]

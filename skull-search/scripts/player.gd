@@ -12,6 +12,44 @@ var player_alive = true
 
 var attack_ip = false
 
+#call: animationSet($Inventory.
+func animationSet(item_name, motion):
+	if item_name == "jack":
+		if motion == "idle":
+			return "jack_idle"
+		elif motion == "attack":
+			return "jack_attack"
+		elif motion == "walk":
+			return "jack_walk"
+		elif motion == "jump":
+			return "jack_jump"
+		elif motion == "hurt":
+			return "jack_hurt"
+		elif motion == "die":
+			return "jack_die"
+		
+	elif item_name == "bag":
+		if motion == "idle":
+			return "bag_idle"
+		elif motion == "attack":
+			return "bag_attack"
+		elif motion == "walk":
+			return "bag_walk"
+		elif motion == "jump":
+			return "bag_jump"
+		elif motion == "hurt":
+			return "bag_hurt"
+		elif motion == "die":
+			return "bag_die"
+		
+	else:
+		if motion == "idle":
+			return "candle_idle"
+		else: #motion == "walk":
+			return "candle_walk"
+			
+
+
 func _physics_process(delta: float) -> void:
 	enemy_attack()
 	player_attack()
@@ -38,11 +76,12 @@ func _physics_process(delta: float) -> void:
 			attack_ip = false
 	elif is_on_floor():
 		if direction == 0:
-			animated_sprite.play("idle")
+			animated_sprite.play(animationSet($Inventory.currentItem, "idle"))
+			
 		elif direction:
-			animated_sprite.play("walking")
+			animated_sprite.play(animationSet($Inventory.currentItem, "walk"))
 	else:
-		animated_sprite.play("jumping")
+		animated_sprite.play(animationSet($Inventory.currentItem, "jump"))
 	#play animation
 
 	if direction:
@@ -57,14 +96,14 @@ func player_move(delta):
 	if Input.is_action_just_pressed("move_left"):
 		velocity.x = -SPEED
 		$AnimatedSprite2D.flip_h = true
-		$AnimatedSprite2D.play("walking")
+		$AnimatedSprite2D.play(animationSet($Inventory.currentItem, "walk"))
 	elif Input.is_action_just_pressed("move_right"):
 		velocity.x = SPEED
 		$AnimatedSprite2D.flip_h = false
-		$AnimatedSprite2D.play("walking")
+		$AnimatedSprite2D.play(animationSet($Inventory.currentItem, "walk"))
 	elif attack_ip == false:
 		velocity.x = 0
-		$AnimatedSprite2D.play("idle")
+		$AnimatedSprite2D.play(animationSet($Inventory.currentItem, "idle"))
 			
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -103,18 +142,22 @@ func player_attack():
 		attack_ip = true
 		if dir == 1:
 			animated_sprite.flip_h = false
-			animated_sprite.play("attack")
-			$DealAttackCD.start()
+			animated_sprite.play(animationSet($Inventory.currentItem, "attack"))
+			if $Inventory.currentItem != "nothing":
+				$DealAttackCD.start()
 		if dir == -1:
 			animated_sprite.flip_h = true
-			animated_sprite.play("attack")
-			$DealAttackCD.start()
+			animated_sprite.play(animationSet($Inventory.currentItem, "attack"))
+			if $Inventory.currentItem != "nothing":
+				$DealAttackCD.start()
 		if dir == 0:
-			animated_sprite.play("attack")
-			$DealAttackCD.start()
+			animated_sprite.play(animationSet($Inventory.currentItem, "attack"))
+			if $Inventory.currentItem != "nothing":
+				$DealAttackCD.start()
 			
 
 func _on_deal_attack_cd_timeout() -> void:
-	$DealAttackCD.stop()
+	if $Inventory.currentItem != "nothing":
+		$DealAttackCD.stop()
 	global.player_current_attack = false
 	attack_ip = false
