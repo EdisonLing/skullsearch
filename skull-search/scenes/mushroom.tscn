@@ -1,10 +1,11 @@
-[gd_scene load_steps=33 format=3 uid="uid://cv8y4n14rll8g"]
+[gd_scene load_steps=39 format=3 uid="uid://cv8y4n14rll8g"]
 
 [ext_resource type="Script" path="res://scripts/mushroom.gd" id="1_8e31a"]
 [ext_resource type="Texture2D" uid="uid://ddfgcbgryrxj8" path="res://assets/assets/sprites/Mushroom/Attack.png" id="1_kj5vk"]
 [ext_resource type="Texture2D" uid="uid://bl88ikrfx6fv7" path="res://assets/assets/sprites/Mushroom/Death.png" id="2_rp7tw"]
 [ext_resource type="Texture2D" uid="uid://bb7kxl6x7t240" path="res://assets/assets/sprites/Mushroom/Idle.png" id="3_123qo"]
 [ext_resource type="Texture2D" uid="uid://c7fh37w7wwgbk" path="res://assets/assets/sprites/Mushroom/Run.png" id="4_ro1oj"]
+[ext_resource type="Texture2D" uid="uid://b6oo08xc30jrm" path="res://assets/assets/sprites/Mushroom/Take Hit.png" id="4_uxepm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2a0r"]
 atlas = ExtResource("1_kj5vk")
@@ -52,6 +53,22 @@ region = Rect2(300, 0, 150, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1hw7b"]
 atlas = ExtResource("2_rp7tw")
+region = Rect2(450, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nmhh"]
+atlas = ExtResource("4_uxepm")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mpeka"]
+atlas = ExtResource("4_uxepm")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sey1s"]
+atlas = ExtResource("4_uxepm")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7kad"]
+atlas = ExtResource("4_uxepm")
 region = Rect2(450, 0, 150, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_012uj"]
@@ -129,9 +146,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_w0t22")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -146,9 +163,26 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1hw7b")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
-"speed": 5.0
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0nmhh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mpeka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sey1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7kad")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -165,7 +199,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -198,23 +232,25 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhjay"]
-radius = 13.0
-height = 40.0
+radius = 11.0
+height = 34.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jl2oo"]
 radius = 114.63
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_akdby"]
+radius = 13.5765
 
 [node name="Mushroom" type="CharacterBody2D"]
 script = ExtResource("1_8e31a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_13lob")
-animation = &"death"
+animation = &"walking"
 autoplay = "idle"
-frame_progress = 0.708443
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 8)
+position = Vector2(1, 6)
 shape = SubResource("CapsuleShape2D_qhjay")
 
 [node name="DetectionArea" type="Area2D" parent="."]
@@ -222,8 +258,22 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(6, 9)
+position = Vector2(1, 8)
 shape = SubResource("CircleShape2D_jl2oo")
 
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(1, 6)
+scale = Vector2(1.03119, 1.16572)
+shape = SubResource("CircleShape2D_akdby")
+
+[node name="attackCD" type="Timer" parent="."]
+
+[node name="RecieveAttackCD" type="Timer" parent="."]
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://dh3tvs1iexd8n"]
+[gd_scene load_steps=33 format=3 uid="uid://dh3tvs1iexd8n"]
 
 [ext_resource type="Texture2D" uid="uid://sa5qtjxy56kw" path="res://assets/assets/sprites/Flying eye/Flight.png" id="1_4rx0r"]
 [ext_resource type="Script" path="res://scripts/eyeball.gd" id="1_8vdm7"]
 [ext_resource type="Texture2D" uid="uid://bc3lhklpnp2ax" path="res://assets/assets/sprites/Flying eye/Attack.png" id="1_mb8ny"]
 [ext_resource type="Texture2D" uid="uid://cpowlc4cbp6bw" path="res://assets/assets/sprites/Flying eye/Death.png" id="2_u0fpe"]
+[ext_resource type="Texture2D" uid="uid://bd6i4tf2celws" path="res://assets/assets/sprites/Flying eye/Take Hit.png" id="5_wajq6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_exrug"]
 atlas = ExtResource("1_mb8ny")
@@ -37,9 +38,9 @@ region = Rect2(900, 0, 150, 150)
 atlas = ExtResource("1_mb8ny")
 region = Rect2(1050, 0, 150, 150)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1y5l8"]
-atlas = ExtResource("2_u0fpe")
-region = Rect2(0, 0, 150, 150)
+[sub_resource type="AtlasTexture" id="AtlasTexture_lohdv"]
+atlas = ExtResource("5_wajq6")
+region = Rect2(150, 0, 150, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_38qc7"]
 atlas = ExtResource("2_u0fpe")
@@ -85,6 +86,18 @@ region = Rect2(900, 0, 150, 150)
 atlas = ExtResource("1_4rx0r")
 region = Rect2(1050, 0, 150, 150)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ic7ax"]
+atlas = ExtResource("5_wajq6")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0msg"]
+atlas = ExtResource("5_wajq6")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4d1sf"]
+atlas = ExtResource("5_wajq6")
+region = Rect2(450, 0, 150, 150)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_83wjt"]
 animations = [{
 "frames": [{
@@ -112,24 +125,24 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8u57y")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
-"speed": 7.0
+"speed": 10.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1y5l8")
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_lohdv")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_38qc7")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_4dcaa")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_rb0ai")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 10.0
 }, {
@@ -160,7 +173,24 @@ animations = [{
 }],
 "loop": true,
 "name": &"flying",
-"speed": 8.0
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_ic7ax")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_lohdv")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_r0msg")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_4d1sf")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 10.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_56e60"]
@@ -177,10 +207,8 @@ script = ExtResource("1_8vdm7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_83wjt")
-animation = &"death"
+animation = &"attack"
 autoplay = "flying"
-frame = 1
-frame_progress = 0.757297
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(5, 4)
@@ -200,7 +228,14 @@ shape = SubResource("CircleShape2D_47mwy")
 position = Vector2(5, 7)
 shape = SubResource("CircleShape2D_w080f")
 
+[node name="attackCD" type="Timer" parent="."]
+
+[node name="RecieveAttackCD" type="Timer" parent="."]
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]
+[connection signal="timeout" from="attackCD" to="." method="_on_attack_cd_timeout"]
+[connection signal="timeout" from="RecieveAttackCD" to="." method="_on_recieve_attack_cd_timeout"]
