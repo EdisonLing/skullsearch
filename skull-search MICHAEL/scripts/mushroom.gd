@@ -5,6 +5,8 @@ var player_chase = false
 var player = null
 
 func _physics_process(delta: float) -> void:
+	if not is_on_floor():
+		position.y += 4.9
 	if player_chase:
 		position += (player.position - position)/speed
 		$AnimatedSprite2D.play("walking")
@@ -15,7 +17,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		$AnimatedSprite2D.play("idle")
 	move_and_slide()
-	print("x: ",str(position.x),"   y: ", str(position.y))
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	player = body

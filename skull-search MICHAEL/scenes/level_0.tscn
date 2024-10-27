@@ -1,14 +1,16 @@
-[gd_scene load_steps=46 format=3 uid="uid://b6c71mnjy1vv5"]
+[gd_scene load_steps=48 format=3 uid="uid://b6c71mnjy1vv5"]
 
-[ext_resource type="PackedScene" uid="uid://c2yagd2e1q5p0" path="res://scenes/character_body_2d.tscn" id="1_1rwpw"]
-[ext_resource type="Texture2D" uid="uid://bymgue23j3aka" path="res://assets/sprites/Final/Final/brush.png" id="2_5ltuk"]
-[ext_resource type="Texture2D" uid="uid://b8hl3d6jefjhv" path="res://assets/sprites/Final/Final/Tiles.png" id="2_rp4ts"]
-[ext_resource type="Texture2D" uid="uid://chbynv41h2t77" path="res://assets/sprites/Final/Final/Salt.png" id="3_n78us"]
-[ext_resource type="Texture2D" uid="uid://msioxgb6dehx" path="res://assets/sprites/Final/Final/Background_0.png" id="4_o2fp3"]
-[ext_resource type="Texture2D" uid="uid://dw1ih7gqc04bh" path="res://assets/sprites/Final/Final/Background_1.png" id="5_etl2f"]
-[ext_resource type="Texture2D" uid="uid://40m7dmfvq4w5" path="res://assets/sprites/Final/Final/Grass_background_1.png" id="6_hk6ss"]
-[ext_resource type="Texture2D" uid="uid://wsql4476m22i" path="res://assets/sprites/Final/Final/Grass_background_2.png" id="7_ig6d3"]
-[ext_resource type="Texture2D" uid="uid://dvnucfjfljljh" path="res://assets/sprites/Final/Final/Background_Full.png" id="9_v7b62"]
+[ext_resource type="PackedScene" uid="uid://dguok84354ukb" path="res://scenes/player.tscn" id="1_1rwpw"]
+[ext_resource type="Texture2D" uid="uid://bymgue23j3aka" path="res://assets/assets/sprites/Final/Final/brush.png" id="2_5ltuk"]
+[ext_resource type="Texture2D" uid="uid://b8hl3d6jefjhv" path="res://assets/assets/sprites/Final/Final/Tiles.png" id="2_rp4ts"]
+[ext_resource type="Texture2D" uid="uid://chbynv41h2t77" path="res://assets/assets/sprites/Final/Final/Salt.png" id="3_n78us"]
+[ext_resource type="Texture2D" uid="uid://msioxgb6dehx" path="res://assets/assets/sprites/Final/Final/Background_0.png" id="4_o2fp3"]
+[ext_resource type="Texture2D" uid="uid://dw1ih7gqc04bh" path="res://assets/assets/sprites/Final/Final/Background_1.png" id="5_etl2f"]
+[ext_resource type="Texture2D" uid="uid://40m7dmfvq4w5" path="res://assets/assets/sprites/Final/Final/Grass_background_1.png" id="6_hk6ss"]
+[ext_resource type="Texture2D" uid="uid://wsql4476m22i" path="res://assets/assets/sprites/Final/Final/Grass_background_2.png" id="7_ig6d3"]
+[ext_resource type="Texture2D" uid="uid://dvnucfjfljljh" path="res://assets/assets/sprites/Final/Final/Background_Full.png" id="9_v7b62"]
+[ext_resource type="PackedScene" uid="uid://cv8y4n14rll8g" path="res://scenes/mushroom.tscn" id="10_vy2kx"]
+[ext_resource type="PackedScene" uid="uid://dh3tvs1iexd8n" path="res://scenes/eyeball.tscn" id="11_hacy4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nypym"]
 texture = ExtResource("2_rp4ts")
@@ -3463,3 +3465,9 @@ motion_mirroring = Vector2(768, 416)
 texture = ExtResource("9_v7b62")
 centered = false
 offset = Vector2(0, -100)
+
+[node name="Mushroom" parent="." instance=ExtResource("10_vy2kx")]
+position = Vector2(140, -201)
+
+[node name="EYEBALL" parent="." instance=ExtResource("11_hacy4")]
+position = Vector2(597, -84)
