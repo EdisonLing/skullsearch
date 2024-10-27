@@ -4,6 +4,7 @@ const SPEED = 100.0
 const JUMP_VELOCITY = -300.0
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var health_bar: ProgressBar = $AnimatedSprite2D/HealthBar
 
 var enemy_in_range = false
 var enemy_attack_cooldown = true
@@ -15,6 +16,8 @@ var attack_ip = false
 var hit_ip = false
 func _ready():
 	print("start")
+	health_bar.max_value = 100
+	health_bar.value = health
 
 func _physics_process(delta: float) -> void:
 	enemy_attack()
@@ -97,8 +100,10 @@ func enemy_attack():
 			player_hit = true
 			hit_ip = true
 			health = health - 20
+			health_bar.value = health
 		else:
 			health = 0
+			health_bar.value = health
 			player_alive = false
 		enemy_attack_cooldown = false
 		$attackCD.start()
