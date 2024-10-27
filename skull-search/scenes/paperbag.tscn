@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://2g8u7d5sgdct"]
+[gd_scene load_steps=9 format=3 uid="uid://2g8u7d5sgdct"]
 
 [ext_resource type="Texture2D" uid="uid://du3lylxm3oo6i" path="res://assets/assets/sprites/paperbagitem.png" id="1_25m06"]
+[ext_resource type="Script" path="res://scenes/paperbag.gd" id="1_sik0o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_il1la"]
 atlas = ExtResource("1_25m06")
@@ -42,6 +43,9 @@ animations = [{
 size = Vector2(11, 14)
 
 [node name="Area2D" type="Area2D"]
+collision_layer = 64
+collision_mask = 64
+script = ExtResource("1_sik0o")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_sallo")
@@ -51,3 +55,5 @@ frame_progress = 0.667278
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 3)
 shape = SubResource("RectangleShape2D_33lt1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

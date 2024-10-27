@@ -4,6 +4,7 @@ const SPEED = 100.0
 const JUMP_VELOCITY = -300.0
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var paperbag: Area2D = $"../paperbag"
 
 var enemy_in_range = false
 var enemy_attack_cooldown = true
@@ -53,6 +54,9 @@ func animationSet(item_name, motion):
 func _physics_process(delta: float) -> void:
 	enemy_attack()
 	player_attack()
+	if paperbag.pickedUp():
+		animationSet("bag","idle")
+		$Inventory.currentItem = "bag"
 	if health <= 0:
 		#$AnimatedSprite2D.play("death")
 		health = 0
