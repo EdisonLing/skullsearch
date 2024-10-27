@@ -372,7 +372,7 @@ bg_color = Color(0.103744, 0.103744, 0.103743, 1)
 bg_color = Color(1, 0, 0.0166664, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fmuv3"]
-radius = 10.25
+radius = 19.0
 height = 44.5
 
 [node name="Player" type="CharacterBody2D"]
@@ -381,7 +381,7 @@ collision_mask = 3
 script = ExtResource("1_aidfq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, -36)
+position = Vector2(1, -33)
 shape = SubResource("CapsuleShape2D_g4rxs")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -400,9 +400,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -101.0
-offset_top = -73.6508
+offset_top = 3.0
 offset_right = -1.0
-offset_bottom = -63.6508
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_bpsej")
@@ -411,9 +411,10 @@ value = 100.0
 show_percentage = false
 
 [node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(20, 1)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(-1, -35)
+position = Vector2(-19, -33)
 shape = SubResource("CapsuleShape2D_fmuv3")
 
 [node name="attackCD" type="Timer" parent="."]
@@ -423,9 +424,13 @@ wait_time = 0.5
 
 [node name="RecieveAttackCD" type="Timer" parent="."]
 
+[node name="mushroomTimer" type="Timer" parent="."]
+wait_time = 0.6
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]
 [connection signal="timeout" from="attackCD" to="." method="_on_attack_cd_timeout"]
 [connection signal="timeout" from="DealAttackCD" to="." method="_on_deal_attack_cd_timeout"]
 [connection signal="timeout" from="RecieveAttackCD" to="." method="_on_recieve_attack_cd_timeout"]
+[connection signal="timeout" from="mushroomTimer" to="." method="_on_mushroom_timer_timeout"]
