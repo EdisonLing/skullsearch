@@ -1,7 +1,7 @@
 extends Node2D
 
 # A dictionary to hold item data
-var items = {"nothing": 1, "jack":0, "bag":0} #define names of items and set which ones are owned by default
+var items = {"nothing": 1, "jack":0, "bag":1} #define names of items and set which ones are owned by default
 var currentItem = "nothing"
 
 # Max size of the inventory
@@ -33,9 +33,12 @@ func remove_item(item_name: String, quantity: int = 1):
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("hotbar1"): 
+		if items["nothing"] > 0:
+			switchCurrentItem("nothing")
+	elif Input.is_action_just_pressed("hotbar2"): 
 		if items["jack"] > 0:
 			switchCurrentItem("jack")
-	elif Input.is_action_just_pressed("hotbar2"): 
+	elif Input.is_action_just_pressed("hotbar3"): 
 		if items["bag"] > 0:
 			switchCurrentItem("bag")
-	
+	$InventoryLabel.text = currentItem
