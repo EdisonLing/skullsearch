@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bajecvmaec5u0"]
+[gd_scene load_steps=9 format=3 uid="uid://bajecvmaec5u0"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_sxd2b"]
 [ext_resource type="Texture2D" uid="uid://dphwso7cjmivk" path="res://assets/assets/sprites/sr202569771b7aws3.png" id="2_wc64s"]
@@ -5415,8 +5415,6 @@ texture = ExtResource("3_ae460")
 sources/0 = SubResource("TileSetAtlasSource_ea4r8")
 sources/1 = SubResource("TileSetAtlasSource_scdp1")
 
-[sub_resource type="ImageTexture" id="ImageTexture_a25mh"]
-
 [node name="Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -5447,15 +5445,6 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Start" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Start"
-icon = SubResource("ImageTexture_a25mh")
-
-[node name="Quit" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Quit"
-
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
 offset_right = 40.0
@@ -5464,14 +5453,26 @@ color = Color(1, 1, 1, 0)
 
 [node name="Button" type="Button" parent="ColorRect"]
 layout_mode = 0
-offset_left = 536.0
-offset_top = 216.0
-offset_right = 687.0
-offset_bottom = 259.0
+offset_left = 538.0
+offset_top = 232.0
+offset_right = 689.0
+offset_bottom = 275.0
 theme = ExtResource("4_u33uy")
 theme_override_fonts/font = ExtResource("5_6gvfp")
 text = "Start
 "
 
-[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[node name="Button2" type="Button" parent="ColorRect"]
+layout_mode = 0
+offset_left = 535.0
+offset_top = 302.0
+offset_right = 686.0
+offset_bottom = 345.0
+theme = ExtResource("4_u33uy")
+theme_override_fonts/font = ExtResource("5_6gvfp")
+text = "Quit
+"
+
+[connection signal="pressed" from="ColorRect/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ColorRect/Button2" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ColorRect/Button2" to="." method="_on_button_2_pressed"]

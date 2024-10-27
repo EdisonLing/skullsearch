@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://b6c71mnjy1vv5"]
+[gd_scene load_steps=27 format=3 uid="uid://b6c71mnjy1vv5"]
 
 [ext_resource type="PackedScene" uid="uid://dguok84354ukb" path="res://scenes/player.tscn" id="1_1rwpw"]
 [ext_resource type="Texture2D" uid="uid://bymgue23j3aka" path="res://assets/assets/sprites/Final/Final/brush.png" id="2_5ltuk"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cv8y4n14rll8g" path="res://scenes/mushroom.tscn" id="12_2my6v"]
 [ext_resource type="PackedScene" uid="uid://2g8u7d5sgdct" path="res://scenes/paperbag.tscn" id="13_xuywm"]
 [ext_resource type="PackedScene" uid="uid://ds3j2a586b6x5" path="res://scenes/jackolatern.tscn" id="15_xrlqq"]
+[ext_resource type="PackedScene" uid="uid://j5g2qo7e6e4s" path="res://scenes/portal.tscn" id="16_6gtb6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w85bk"]
 texture = ExtResource("2_5ltuk")
@@ -3319,9 +3320,6 @@ position = Vector2(2124, 77)
 [node name="Mushroom2" parent="." instance=ExtResource("12_2my6v")]
 position = Vector2(2268, 86)
 
-[node name="Area2D" parent="." instance=ExtResource("13_xuywm")]
-position = Vector2(1870, 201)
-
 [node name="Labels" type="Node" parent="."]
 
 [node name="Label" type="Label" parent="Labels"]
@@ -3387,5 +3385,11 @@ text = "Pickup different heads to use special abilities!
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Area2D2" parent="." instance=ExtResource("15_xrlqq")]
+[node name="jackolatern" parent="." instance=ExtResource("15_xrlqq")]
 position = Vector2(852, 203)
+
+[node name="paperbag" parent="." instance=ExtResource("13_xuywm")]
+position = Vector2(1870, 201)
+
+[node name="Portal" parent="." instance=ExtResource("16_6gtb6")]
+position = Vector2(2671, 55)
