@@ -1,4 +1,4 @@
-[gd_scene load_steps=162 format=3 uid="uid://dguok84354ukb"]
+[gd_scene load_steps=164 format=3 uid="uid://dguok84354ukb"]
 
 [ext_resource type="Texture2D" uid="uid://bqudjjn37hj3v" path="res://assets/assets/sprites/Skeletons_Free_Pack/Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_Without_VFX/Skeleton_01_White_Idle.png" id="1_66klt"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_aidfq"]
@@ -1106,6 +1106,12 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t2tpm"]
+bg_color = Color(0.0646965, 0.0646965, 0.0646965, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f0h70"]
+bg_color = Color(0.89, 0, 0, 1)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fmuv3"]
 radius = 10.25
 height = 44.5
@@ -1126,6 +1132,15 @@ sprite_frames = SubResource("SpriteFrames_w6tjt")
 animation = &"candle_idle"
 autoplay = "candle_idle"
 
+[node name="HealthBar" type="ProgressBar" parent="AnimatedSprite2D"]
+offset_left = -53.0
+offset_top = 35.0
+offset_right = 47.0
+offset_bottom = 40.0
+theme_override_styles/background = SubResource("StyleBoxFlat_t2tpm")
+theme_override_styles/fill = SubResource("StyleBoxFlat_f0h70")
+show_percentage = false
+
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
@@ -1137,6 +1152,11 @@ wait_time = 0.5
 
 [node name="DealAttackCD" type="Timer" parent="."]
 
+[node name="RecieveAttackCD" type="Timer" parent="."]
+
+[node name="mushroomTimer" type="Timer" parent="."]
+wait_time = 0.6
+
 [node name="Inventory" type="Node2D" parent="."]
 script = ExtResource("17_lnhdp")
 
@@ -1146,7 +1166,10 @@ offset_top = -77.0
 offset_right = 20.0
 offset_bottom = -54.0
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]
 [connection signal="timeout" from="attackCD" to="." method="_on_attack_cd_timeout"]
 [connection signal="timeout" from="DealAttackCD" to="." method="_on_deal_attack_cd_timeout"]
+[connection signal="timeout" from="RecieveAttackCD" to="." method="_on_recieve_attack_cd_timeout"]
+[connection signal="timeout" from="mushroomTimer" to="." method="_on_mushroom_timer_timeout"]
