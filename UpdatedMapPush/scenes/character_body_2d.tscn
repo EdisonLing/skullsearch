@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://c2yagd2e1q5p0"]
+
+[ext_resource type="Texture2D" uid="uid://bqudjjn37hj3v" path="res://assets/sprites/Skeletons_Free_Pack/Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_Without_VFX/Skeleton_01_White_Idle.png" id="1_104ti"]
+[ext_resource type="Script" path="res://scenes/character_body_2d.gd" id="1_th36o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7bvf"]
+atlas = ExtResource("1_104ti")
+region = Rect2(0, 15, 96, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_564sg"]
+atlas = ExtResource("1_104ti")
+region = Rect2(96, 15, 96, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06wii"]
+atlas = ExtResource("1_104ti")
+region = Rect2(192, 15, 96, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq648"]
+atlas = ExtResource("1_104ti")
+region = Rect2(288, 15, 96, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6qi2"]
+atlas = ExtResource("1_104ti")
+region = Rect2(384, 15, 96, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6f1gj"]
+atlas = ExtResource("1_104ti")
+region = Rect2(480, 15, 96, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnf5o"]
+atlas = ExtResource("1_104ti")
+region = Rect2(576, 15, 96, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vh3u"]
+atlas = ExtResource("1_104ti")
+region = Rect2(672, 15, 96, 49)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4100b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7bvf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_564sg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06wii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sq648")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6qi2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6f1gj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnf5o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vh3u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_heo7o"]
+radius = 8.0
+height = 45.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_th36o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4100b")
+autoplay = "default"
+frame = 1
+frame_progress = 0.671232
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 5
+position = Vector2(-3, 2.5)
+shape = SubResource("CapsuleShape2D_heo7o")
