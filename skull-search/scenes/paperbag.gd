@@ -1,7 +1,9 @@
 extends Area2D
-var status = false
-signal pickedUp(status)
+
+@onready var inventory: Node2D = %Inventory2
 
 func _on_body_entered(body: Node2D) -> void:
-	status = true
-	pickedUp.emit()
+	%Inventory2.items["bag"] = 1
+	%Inventory2.switchCurrentItem("bag")
+	$"../CanvasLayer/Hotbar/AnimatedSprite2D2".visible = true
+	queue_free()

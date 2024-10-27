@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b6c71mnjy1vv5"]
+[gd_scene load_steps=40 format=3 uid="uid://b6c71mnjy1vv5"]
 
 [ext_resource type="PackedScene" uid="uid://dguok84354ukb" path="res://scenes/player.tscn" id="1_1rwpw"]
 [ext_resource type="Texture2D" uid="uid://bymgue23j3aka" path="res://assets/assets/sprites/Final/Final/brush.png" id="2_5ltuk"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dw1ih7gqc04bh" path="res://assets/assets/sprites/Final/Final/Background_1.png" id="5_etl2f"]
 [ext_resource type="Texture2D" uid="uid://40m7dmfvq4w5" path="res://assets/assets/sprites/Final/Final/Grass_background_1.png" id="6_hk6ss"]
 [ext_resource type="Texture2D" uid="uid://wsql4476m22i" path="res://assets/assets/sprites/Final/Final/Grass_background_2.png" id="7_ig6d3"]
+[ext_resource type="Script" path="res://scenes/inventory.gd" id="9_18eay"]
 [ext_resource type="Texture2D" uid="uid://dvnucfjfljljh" path="res://assets/assets/sprites/Final/Final/Background_Full.png" id="9_v7b62"]
 [ext_resource type="FontFile" uid="uid://hw2eqasag4tt" path="res://assets/assets/fonts/PixelOperator8.ttf" id="10_sq6l2"]
 [ext_resource type="PackedScene" uid="uid://b2cjydg7prasw" path="res://scenes/hotbar.tscn" id="10_ysyt0"]
@@ -16,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://2g8u7d5sgdct" path="res://scenes/paperbag.tscn" id="13_xuywm"]
 [ext_resource type="PackedScene" uid="uid://ds3j2a586b6x5" path="res://scenes/jackolatern.tscn" id="15_xrlqq"]
 [ext_resource type="PackedScene" uid="uid://j5g2qo7e6e4s" path="res://scenes/portal.tscn" id="16_6gtb6"]
+[ext_resource type="Texture2D" uid="uid://b56uaoby7npup" path="res://assets/assets/sprites/Jack.png" id="18_07tvt"]
+[ext_resource type="Texture2D" uid="uid://du3lylxm3oo6i" path="res://assets/assets/sprites/paperbagitem.png" id="19_4gxgq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w85bk"]
 texture = ExtResource("2_5ltuk")
@@ -3253,6 +3256,78 @@ size = Vector2(20, 204)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6g7ii"]
 size = Vector2(142, 364.5)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_v33w4"]
+atlas = ExtResource("18_07tvt")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ia15r"]
+atlas = ExtResource("18_07tvt")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fyxpi"]
+atlas = ExtResource("18_07tvt")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75601"]
+atlas = ExtResource("18_07tvt")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6oaca"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v33w4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ia15r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fyxpi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75601")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_il1la"]
+atlas = ExtResource("19_4gxgq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82w3g"]
+atlas = ExtResource("19_4gxgq")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6nuo"]
+atlas = ExtResource("19_4gxgq")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08pxt"]
+atlas = ExtResource("19_4gxgq")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d8yid"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_il1la")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82w3g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6nuo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08pxt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Level0" type="Node"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -3273,6 +3348,10 @@ position = Vector2(-2, -9)
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
+[node name="Inventory2" type="Node2D" parent="CharacterBody2D"]
+unique_name_in_owner = true
+script = ExtResource("9_18eay")
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="Background1" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -3283,20 +3362,6 @@ motion_mirroring = Vector2(768, 416)
 texture = ExtResource("9_v7b62")
 centered = false
 offset = Vector2(0, -100)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Control" parent="CanvasLayer" instance=ExtResource("10_ysyt0")]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-offset_top = -20.0
-offset_bottom = -20.0
-grow_vertical = 0
-pivot_offset = Vector2(0, -20)
-size_flags_horizontal = 4
-metadata/_edit_use_anchors_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -3386,10 +3451,40 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="jackolatern" parent="." instance=ExtResource("15_xrlqq")]
-position = Vector2(852, 203)
+position = Vector2(852, 201)
 
 [node name="paperbag" parent="." instance=ExtResource("13_xuywm")]
 position = Vector2(1870, 201)
 
 [node name="Portal" parent="." instance=ExtResource("16_6gtb6")]
 position = Vector2(2671, 55)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hotbar" parent="CanvasLayer" instance=ExtResource("10_ysyt0")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+offset_left = 1.0
+offset_top = -100.0
+offset_right = 1.0
+offset_bottom = -100.0
+grow_vertical = 0
+size_flags_horizontal = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Hotbar"]
+visible = false
+position = Vector2(-67, 3)
+scale = Vector2(1.16, 1.16)
+sprite_frames = SubResource("SpriteFrames_6oaca")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="CanvasLayer/Hotbar"]
+visible = false
+position = Vector2(-1, 1)
+scale = Vector2(2.52865, 2.52865)
+sprite_frames = SubResource("SpriteFrames_d8yid")
+autoplay = "default"
+
+[connection signal="body_entered" from="jackolatern" to="CharacterBody2D" method="_on_jackolatern_body_entered"]

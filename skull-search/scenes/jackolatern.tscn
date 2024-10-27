@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://ds3j2a586b6x5"]
+[gd_scene load_steps=9 format=3 uid="uid://ds3j2a586b6x5"]
 
 [ext_resource type="Texture2D" uid="uid://b56uaoby7npup" path="res://assets/assets/sprites/Jack.png" id="1_6b072"]
+[ext_resource type="Script" path="res://scenes/jackolatern.gd" id="1_a4lin"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v33w4"]
 atlas = ExtResource("1_6b072")
@@ -42,6 +43,9 @@ animations = [{
 radius = 12.0
 
 [node name="Area2D" type="Area2D"]
+collision_layer = 64
+collision_mask = 64
+script = ExtResource("1_a4lin")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wskou")
@@ -50,3 +54,5 @@ frame_progress = 0.844312
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 5)
 shape = SubResource("CircleShape2D_jupmq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
