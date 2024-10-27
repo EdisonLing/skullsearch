@@ -1,4 +1,4 @@
-[gd_scene load_steps=161 format=3 uid="uid://dguok84354ukb"]
+[gd_scene load_steps=162 format=3 uid="uid://dguok84354ukb"]
 
 [ext_resource type="Texture2D" uid="uid://bqudjjn37hj3v" path="res://assets/assets/sprites/Skeletons_Free_Pack/Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_Without_VFX/Skeleton_01_White_Idle.png" id="1_66klt"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_aidfq"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://csa2vrcu2mdui" path="res://assets/assets/sprites/Jack o lantern/Skeleton_01_White_Idle.png" id="13_35fwa"]
 [ext_resource type="Texture2D" uid="uid://trrq013n20sf" path="res://assets/assets/sprites/Jack o lantern/Skeleton_01_White_Walk.png" id="14_qons4"]
 [ext_resource type="Texture2D" uid="uid://bs1kljsmkhoph" path="res://assets/assets/sprites/Jack o lantern/Skeleton_01_White_Die.png" id="16_yvrmj"]
+[ext_resource type="Script" path="res://scenes/inventory.gd" id="17_lnhdp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g4rxs"]
 height = 42.0
@@ -1122,7 +1123,7 @@ shape = SubResource("CapsuleShape2D_g4rxs")
 position = Vector2(2, -43)
 scale = Vector2(1, 0.984375)
 sprite_frames = SubResource("SpriteFrames_w6tjt")
-animation = &"bag_jump"
+animation = &"candle_idle"
 autoplay = "candle_idle"
 
 [node name="Hitbox" type="Area2D" parent="."]
@@ -1135,6 +1136,15 @@ shape = SubResource("CapsuleShape2D_fmuv3")
 wait_time = 0.5
 
 [node name="DealAttackCD" type="Timer" parent="."]
+
+[node name="Inventory" type="Node2D" parent="."]
+script = ExtResource("17_lnhdp")
+
+[node name="InventoryLabel" type="Label" parent="Inventory"]
+offset_left = -20.0
+offset_top = -77.0
+offset_right = 20.0
+offset_bottom = -54.0
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]
