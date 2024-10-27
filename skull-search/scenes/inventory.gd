@@ -3,7 +3,6 @@ extends Node2D
 # A dictionary to hold item data
 var items = {"nothing": 1, "jack":0, "bag":0} #define names of items and set which ones are owned by default
 var currentItem = "nothing"
-var displayText = ""
 
 # Max size of the inventory
 const MAX_INVENTORY_SIZE = 20
