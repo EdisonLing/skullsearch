@@ -14,6 +14,8 @@ func _physics_process(delta: float) -> void:
 			$AnimatedSprite2D.flip_h = false
 	else:
 		$AnimatedSprite2D.play("idle")
+	move_and_slide()
+	print("x: ",str(position.x),"   y: ", str(position.y))
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	player = body
