@@ -3345,7 +3345,9 @@ position = Vector2(2, -25)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(-2, -9)
+offset = Vector2(0, -69)
 zoom = Vector2(2, 2)
+limit_bottom = 1000000
 position_smoothing_enabled = true
 
 [node name="Inventory2" type="Node2D" parent="CharacterBody2D"]
@@ -3388,10 +3390,10 @@ position = Vector2(2268, 86)
 [node name="Labels" type="Node" parent="."]
 
 [node name="Label" type="Label" parent="Labels"]
-offset_left = -210.0
-offset_top = -173.0
-offset_right = 369.0
-offset_bottom = -150.0
+offset_left = -56.0
+offset_top = -166.0
+offset_right = 523.0
+offset_bottom = -143.0
 theme_override_colors/font_color = Color(0.898273, 2.59425e-05, 1.54981e-05, 1)
 theme_override_fonts/font = ExtResource("10_sq6l2")
 theme_override_font_sizes/font_size = 16
@@ -3406,7 +3408,7 @@ offset_bottom = -84.0
 theme_override_colors/font_color = Color(0.898039, 0.541176, 0, 1)
 theme_override_fonts/font = ExtResource("10_sq6l2")
 theme_override_font_sizes/font_size = 16
-text = "Use A & S, or Arrow keys 
+text = "Use A & D, or Arrow keys 
 to move..."
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -3424,10 +3426,10 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Label5" type="Label" parent="Labels"]
-offset_left = 327.0
-offset_top = -80.0
-offset_right = 509.0
-offset_bottom = -26.0
+offset_left = 379.0
+offset_top = -73.0
+offset_right = 561.0
+offset_bottom = -19.0
 theme_override_colors/font_color = Color(0.898039, 0.541176, 0, 1)
 theme_override_fonts/font = ExtResource("10_sq6l2")
 theme_override_font_sizes/font_size = 16

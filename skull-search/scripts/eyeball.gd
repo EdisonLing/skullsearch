@@ -81,6 +81,6 @@ func _on_attack_cd_timeout() -> void:
 	global.player_current_attack = true
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	print("dead")
+	#print("dead")
 	if health == 0:
 		queue_free()

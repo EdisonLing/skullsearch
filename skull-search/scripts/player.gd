@@ -142,12 +142,12 @@ func _on_hitbox_body_exited(body: Node2D) -> void:
 		
 func enemy_attack():
 	if enemy_in_range and enemy_attack_cooldown == true:
-		if health-20 > 0:
+		if health-10 > 0:
 			$AnimatedSprite2D.play(animationSet($Inventory.currentItem, "hurt"))
 			$RecieveAttackCD.start()
 			player_hit = true
 			hit_ip = true
-			health = health - 20
+			health = health - 10
 			health_bar.value = health
 		else:
 			health = 0
@@ -191,7 +191,7 @@ func _on_deal_attack_cd_timeout() -> void:
 	attack_ip = false
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	print("dead")
+	print("player dead, health: ", health)
 	if !player_alive:
 		get_tree().reload_current_scene()
 

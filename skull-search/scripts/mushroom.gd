@@ -12,6 +12,8 @@ var hit_ip = false;
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _physics_process(delta: float) -> void:
+	if not is_on_floor():
+		position.y = position.y + 5
 	if health == 0:
 		$AnimatedSprite2D.play("death")
 	else:

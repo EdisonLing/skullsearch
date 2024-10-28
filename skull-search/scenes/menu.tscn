@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bajecvmaec5u0"]
+[gd_scene load_steps=10 format=3 uid="uid://bajecvmaec5u0"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_sxd2b"]
 [ext_resource type="Texture2D" uid="uid://dphwso7cjmivk" path="res://assets/assets/sprites/sr202569771b7aws3.png" id="2_wc64s"]
 [ext_resource type="Texture2D" uid="uid://dcogrqxkid7sw" path="res://assets/assets/sprites/GUI.png" id="3_ae460"]
 [ext_resource type="Theme" uid="uid://b3kptfbhx3wyw" path="res://scripts/default1.tres" id="4_u33uy"]
 [ext_resource type="FontFile" uid="uid://hw2eqasag4tt" path="res://assets/assets/fonts/PixelOperator8.ttf" id="5_6gvfp"]
+[ext_resource type="FontFile" uid="uid://dyalyac8qix65" path="res://assets/assets/fonts/PixelOperator8-Bold.ttf" id="6_qdglo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ea4r8"]
 texture = ExtResource("2_wc64s")
@@ -5471,6 +5472,17 @@ offset_bottom = 345.0
 theme = ExtResource("4_u33uy")
 theme_override_fonts/font = ExtResource("5_6gvfp")
 text = "Quit
+"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 286.0
+offset_top = 98.0
+offset_right = 946.0
+offset_bottom = 159.0
+theme_override_fonts/font = ExtResource("6_qdglo")
+theme_override_font_sizes/font_size = 60
+text = "Skull Search
 "
 
 [connection signal="pressed" from="ColorRect/Button" to="." method="_on_button_pressed"]
